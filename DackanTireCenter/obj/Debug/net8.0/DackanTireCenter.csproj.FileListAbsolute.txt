@@ -1,0 +1,14 @@
+/Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/bin/Debug/net8.0/DackanTireCenter
+/Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/bin/Debug/net8.0/DackanTireCenter.deps.json
+/Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/bin/Debug/net8.0/DackanTireCenter.runtimeconfig.json
+/Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/bin/Debug/net8.0/DackanTireCenter.dll
+/Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/bin/Debug/net8.0/DackanTireCenter.pdb
+/Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/obj/Debug/net8.0/DackanTireCenter.GeneratedMSBuildEditorConfig.editorconfig
+/Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/obj/Debug/net8.0/DackanTireCenter.AssemblyInfoInputs.cache
+/Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/obj/Debug/net8.0/DackanTireCenter.AssemblyInfo.cs
+/Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/obj/Debug/net8.0/DackanTireCenter.csproj.CoreCompileInputs.cache
+/Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/obj/Debug/net8.0/DackanTireCenter.dll
+/Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/obj/Debug/net8.0/refint/DackanTireCenter.dll
+/Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/obj/Debug/net8.0/DackanTireCenter.pdb
+/Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/obj/Debug/net8.0/DackanTireCenter.genruntimeconfig.cache
+/Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/obj/Debug/net8.0/ref/DackanTireCenter.dll
