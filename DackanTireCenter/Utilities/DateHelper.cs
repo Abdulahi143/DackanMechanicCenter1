@@ -4,7 +4,7 @@ namespace DackanTireCenter.Utilities
 {
     public static class DateHelper
     {
-        // Check if the given date falls on a weekend (Saturday or Sunday)
+        // Här kontrollerar vi så att datumet som användaren matat in är inte en helgdag som lör/sön
         public static bool IsWeekend(DateOnly date)
         {
             var day = date.DayOfWeek;
@@ -16,7 +16,7 @@ namespace DackanTireCenter.Utilities
             return date < DateOnly.FromDateTime(DateTime.Now);
         }
 
-        // Get the next working day (skip weekends)
+        // Hoppa över till nästa arbetsdag om användare valt helgdag
         public static DateOnly GetNextWorkingDay(DateOnly date)
         {
             do
@@ -28,7 +28,7 @@ namespace DackanTireCenter.Utilities
 
         public static DateOnly GetFirstAvailableWorkingDay(DateOnly date)
         {
-            return GetNextWorkingDay(date); // Simply use GetNextWorkingDay
+            return GetNextWorkingDay(date); // Här retuneras närmaste arbetsdag
         }
     }
 }

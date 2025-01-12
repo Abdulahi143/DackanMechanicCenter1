@@ -1,4 +1,6 @@
-﻿using DackanTireCenter.Managers;
+﻿using DackanTireCenter.Admin;
+using DackanTireCenter.Authenticate;
+using DackanTireCenter.Managers;
 using DackanTireCenter.Utilities;
 
 namespace DackanTireCenter
@@ -63,11 +65,16 @@ namespace DackanTireCenter
                         bookingManager.RemoveBookingByCar(carPlate); // Call RemoveBookingByCar in bookingManager
                         break;
 
-
                     case 5:
-                        Console.WriteLine("Administratörsfunktioner är under utveckling.");
-                        break;
+                        AdminSignIn adminSignIn = new AdminSignIn();
+                        if (adminSignIn.SignIn())
+                        {
+                            Console.WriteLine("Välkommen till admin panelen");
+                            AdminPanel adminPanel = new AdminPanel(bookingManager);
+                            adminPanel.ShowMenu(); // Transition to the admin panel
+                        }
 
+                        break;
                     case 6:
                         Console.WriteLine("Tack för att du använder Däckan Tire Center. Ha en bra dag!");
                         break;

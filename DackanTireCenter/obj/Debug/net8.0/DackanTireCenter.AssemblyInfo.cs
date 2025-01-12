@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DackanTireCenter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c16dffe1de63ea2bf0bcd6f65919bcf012bf0695")]
 [assembly: System.Reflection.AssemblyProductAttribute("DackanTireCenter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DackanTireCenter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

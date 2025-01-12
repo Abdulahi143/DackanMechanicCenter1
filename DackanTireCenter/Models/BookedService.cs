@@ -23,7 +23,7 @@ namespace DackanTireCenter.Models
 
         public override string ToString()
         {
-            return $"{ServiceName} ({Price} SEK) för {CustomerName} på {BookingTime:yyyy-MM-dd HH:mm}";
+            return $"Registreringsnummer: {CarPlate}, {ServiceName} ({Price} SEK) för {CustomerName} på {BookingTime:yyyy-MM-dd HH:mm}";
         }
     }
 }

@@ -7,11 +7,16 @@ namespace DackanTireCenter.Managers
 {
     public class NewBooking
     {
+        private readonly BookingManager bookingManager;
         private readonly Dictionary<string, BookedService> bookedServices;
         private readonly Dictionary<DateOnly, Dictionary<TimeOnly, bool>> dailyBookingSlots;
-
-        public NewBooking(Dictionary<string, BookedService> bookedServices, Dictionary<DateOnly, Dictionary<TimeOnly, bool>> dailyBookingSlots)
+        private readonly ServiceManager serviceManager;
+        public NewBooking(ServiceManager serviceManager, 
+            Dictionary<string, BookedService> bookedServices, 
+            Dictionary<DateOnly, Dictionary<TimeOnly, bool>> dailyBookingSlots) 
         {
+            this.serviceManager = serviceManager;
+            this.bookingManager = bookingManager; // Assign the bookingManager
             this.bookedServices = bookedServices;
             this.dailyBookingSlots = dailyBookingSlots;
         }
@@ -103,13 +108,8 @@ namespace DackanTireCenter.Managers
 
         public void HandleNewBooking(TimeOnly time, DateOnly date)
         {
-            List<Service> availableServices = new List<Service>
-            {
-                new Service("Oljebyte", 499),
-                new Service("Däckbyte", 999),
-                new Service("Bromsinspektion", 299)
-            };
-
+            // Get the available services from the BookingManager
+            List<Service> availableServices = serviceManager.GetAvailableServices(); 
             Console.Write("Ange bilens registreringsnummer (t.ex. ABC123): ");
             string carPlate = Console.ReadLine()?.Trim().ToUpper();
 

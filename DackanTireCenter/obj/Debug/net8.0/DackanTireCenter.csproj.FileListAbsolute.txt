@@ -12,3 +12,4 @@
 /Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/obj/Debug/net8.0/DackanTireCenter.pdb
 /Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/obj/Debug/net8.0/DackanTireCenter.genruntimeconfig.cache
 /Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/obj/Debug/net8.0/ref/DackanTireCenter.dll
+/Users/shakurjr/Desktop/projects/schoolprojects/c#/project/DackanTireCenter/DackanTireCenter/obj/Debug/net8.0/DackanTireCenter.sourcelink.json

@@ -8,11 +8,24 @@ namespace DackanTireCenter.Managers
     public class BookingManager
     {
         private readonly Dictionary<string, BookedService> bookedServices;
-        private readonly Dictionary<DateOnly, Dictionary<TimeOnly, bool>> dailyBookingSlots;
+        public readonly Dictionary<DateOnly, Dictionary<TimeOnly, bool>> dailyBookingSlots;
         private readonly NewBooking newBooking;
         private readonly UpdateBooking updateBooking;
-        private readonly RemoveBooking removeBooking; // Add RemoveBooking
-        private Dictionary<TimeOnly, bool> GetDailySlots(DateOnly date)
+        private readonly RemoveBooking removeBooking;
+        private readonly ServiceManager serviceManager;
+
+        public BookingManager()
+        {
+            bookedServices = new Dictionary<string, BookedService>();
+            dailyBookingSlots = new Dictionary<DateOnly, Dictionary<TimeOnly, bool>>();
+            serviceManager = new ServiceManager(); // Moved before newBooking initialization
+            newBooking = new NewBooking(serviceManager, bookedServices, dailyBookingSlots); 
+            updateBooking = new UpdateBooking(bookedServices, dailyBookingSlots);
+            removeBooking = new RemoveBooking(bookedServices, dailyBookingSlots);
+        }
+        
+
+        public Dictionary<TimeOnly, bool> GetDailySlots(DateOnly date)
         {
             if (!dailyBookingSlots.ContainsKey(date))
             {
@@ -32,14 +45,6 @@ namespace DackanTireCenter.Managers
             }
             return dailyBookingSlots[date];
         }
-        public BookingManager()
-        {
-            bookedServices = new Dictionary<string, BookedService>();
-            dailyBookingSlots = new Dictionary<DateOnly, Dictionary<TimeOnly, bool>>();
-            newBooking = new NewBooking(bookedServices, dailyBookingSlots);
-            updateBooking = new UpdateBooking(bookedServices, dailyBookingSlots);
-            removeBooking = new RemoveBooking(bookedServices, dailyBookingSlots); // Initialize RemoveBooking
-        }
 
         public void ShowBookedService(string carPlate)
         {
@@ -52,8 +57,19 @@ namespace DackanTireCenter.Managers
                 Console.WriteLine($"Ingen bokning hittades för fordonet med registreringsnummer: {carPlate}");
             }
         }
-
         
+        public List<Service> GetAvailableServices()
+        {
+            return serviceManager.GetAvailableServices();
+        }
+
+        public bool IsServiceBookedForCar(string carPlate, string serviceName)
+        {
+            return bookedServices.Values.Any(b =>
+                b.CarPlate == carPlate &&
+                b.ServiceName.Equals(serviceName, StringComparison.OrdinalIgnoreCase));
+        }
+
         public void HandleNewBooking(int choice)
         {
             newBooking.HandleBooking(choice);
@@ -63,12 +79,12 @@ namespace DackanTireCenter.Managers
         {
             updateBooking.UpdateExistBooking(carPlate);
         }
-        
+
         public void RemoveBookingByCar(string carPlate)
         {
-            removeBooking.RemoveBookingByCar(carPlate); // Call RemoveBookingByCar in removeBooking
+            removeBooking.RemoveBookingByCar(carPlate);
         }
-        
+
         public void BookService(string serviceName, decimal price, string carPlate, string name, string email, string phone, DateTime time)
         {
             var booking = new BookedService(serviceName, price, carPlate, name, email, phone, time);
@@ -96,6 +112,41 @@ namespace DackanTireCenter.Managers
             slots[TimeOnly.FromDateTime(time)] = true;
 
             Console.WriteLine($"Tjänsten '{serviceName}' har bokats för {carPlate} den {time:yyyy-MM-dd HH:mm}.");
+        }
+
+        public Dictionary<string, BookedService> GetAllBookings()
+        {
+            return bookedServices;
+        }
+
+        public void AddService(string serviceName, decimal price)
+        {
+            serviceManager.AddService(serviceName, price);
+        }
+
+    
+        
+        public void UpdateServiceName(string oldName, string newName)
+        {
+            serviceManager.UpdateServiceName(oldName, newName);
+        }
+
+
+        
+        public void UpdateServicePrice(string serviceName, decimal newPrice)
+        {
+            serviceManager.UpdateServicePrice(serviceName, newPrice);
+        }
+        
+        
+        public void DeleteService(string serviceName)
+        {
+            serviceManager.DeleteService(serviceName);
+        }
+
+        public bool ServiceExists(string serviceName)
+        {
+            return serviceManager.ServiceExists(serviceName);
         }
     }
 }

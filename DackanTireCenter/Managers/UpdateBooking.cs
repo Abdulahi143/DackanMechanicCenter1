@@ -20,46 +20,56 @@ namespace DackanTireCenter.Managers
         {
             if (bookedServices.TryGetValue(carPlate, out var service))
             {
-                Console.WriteLine($"Bokad tjänst för {carPlate}");
-                Console.WriteLine($"Tjänsten: {service}");
-                Console.WriteLine("1. Uppdatera bilens registreringsnummer.");
-                Console.WriteLine("2. Ändra tjänst.");
-                Console.WriteLine("3. Ändra datum.");
-                Console.WriteLine("4. Uppdatera namn.");
-                Console.WriteLine("5. Uppdatera e-postadressen.");
-                Console.WriteLine("6. Uppdatera mobilen.");
-                Console.Write("Välj ett alternativ (1-6): ");
 
-                if (int.TryParse(Console.ReadLine(), out int choice))
+                while (true)
                 {
-                    switch (choice)
+                    Console.WriteLine($"Bokad tjänst för {carPlate}");
+                    Console.WriteLine($"Tjänsten: {service}");
+                    Console.WriteLine("1. Uppdatera bilens registreringsnummer.");
+                    Console.WriteLine("2. Ändra tjänst.");
+                    Console.WriteLine("3. Ändra datum.");
+                    Console.WriteLine("4. Uppdatera namn.");
+                    Console.WriteLine("5. Uppdatera e-postadressen.");
+                    Console.WriteLine("6. Uppdatera mobilen.");
+                    Console.WriteLine("7. Ångra och gå tillbaka till huvudmenyn.");
+                    Console.Write("Välj ett alternativ (1-7): ");
+
+                    if (int.TryParse(Console.ReadLine(), out int choice))
                     {
-                        case 1:
-                            UpdateCarPlate(carPlate);
-                            break;
-                        case 2:
-                            ChangeService(carPlate);
-                            break;
-                        case 3:
-                            ChangeBookingDate(carPlate);
-                            break;
-                        case 4:
-                            UpdateName(carPlate);
-                            break;
-                        case 5:
-                            UpdateEmail(carPlate);
-                            break;
-                        case 6:
-                            UpdatePhone(carPlate);
-                            break;
-                        default:
-                            Console.WriteLine("Ogiltigt val.");
-                            break;
+           
+                        switch (choice)
+                        {
+                            case 1:
+                                UpdateCarPlate(carPlate);
+                                break;
+                            case 2:
+                                ChangeService(carPlate);
+                                break;
+                            case 3:
+                                ChangeBookingDate(carPlate);
+                                break;
+                            case 4:
+                                UpdateName(carPlate);
+                                break;
+                            case 5:
+                                UpdateEmail(carPlate);
+                                break;
+                            case 6:
+                                UpdatePhone(carPlate);
+                                break;
+                            case 7:
+                                Console.WriteLine("Ingen uppdatering gjorts, huvudmeny återupptas!");
+                                return; 
+                            default:
+                                Console.WriteLine("Ogiltigt val.");
+                                break;
+                        }
+                  
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Ogiltigt val.");
+                    else
+                    {
+                        Console.WriteLine("Ogiltigt val.");
+                    }
                 }
             }
             else
@@ -154,7 +164,7 @@ namespace DackanTireCenter.Managers
                 break;
 
             case 2:
-                while (true) // Loop until a valid date is chosen
+                while (true) 
                 {
                     Console.Write("Ange det nya datumet (ÅÅÅÅ-MM-DD): ");
                     if (DateOnly.TryParse(Console.ReadLine(), out newDate))
