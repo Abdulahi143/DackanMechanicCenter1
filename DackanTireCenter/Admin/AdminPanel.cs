@@ -34,7 +34,7 @@ namespace DackanTireCenter.Admin
                     switch (choice)
                     {
                         case 1:
-                            ShowAllBookings();
+                         ShowAllBookings();
                             break;
                         case 2:
                             NewBookingByAdmin();
@@ -73,8 +73,7 @@ namespace DackanTireCenter.Admin
 
             if (int.TryParse(Console.ReadLine(), out int choice))
             {
-                do
-                {
+ 
                     switch (choice)
                     {
                         case 1:
@@ -93,7 +92,6 @@ namespace DackanTireCenter.Admin
                             Console.WriteLine("Ogiltigt val.");
                             break;
                     }
-                } while (choice != 4);
             }
             else
             {
@@ -165,7 +163,7 @@ namespace DackanTireCenter.Admin
                 Console.WriteLine("Inga bokningar ännu.");
             }
         }
-       private void NewBookingByAdmin()
+   private void NewBookingByAdmin()
 {
     Console.WriteLine("\nBoka en tid åt en kund:");
 
@@ -189,9 +187,7 @@ namespace DackanTireCenter.Admin
                 }
                 break;
             case 2:
-                
                 date = DateHelper.GetFirstAvailableWorkingDay(DateOnly.FromDateTime(DateTime.Now));
-                Console.WriteLine($"Tillgängliga tider för {date:yyyy-MM-dd}:");
                 break;
             default:
                 Console.WriteLine("Ogiltigt val.");
@@ -236,6 +232,9 @@ namespace DackanTireCenter.Admin
     {
         TimeOnly selectedTime = slotList[slotIndex - 1];
 
+        // Display the selected time to the admin
+        Console.WriteLine($"Vald tid: {selectedTime:HH\\:mm}");
+
         // Get car plate number
         Console.Write("Ange bilens registreringsnummer: ");
         string carPlate = Console.ReadLine()?.Trim().ToUpper();
@@ -252,12 +251,12 @@ namespace DackanTireCenter.Admin
 
         // Get service selection from admin
         Console.Write("Välj en tjänst genom att ange dess nummer: ");
-        if (int.TryParse(Console.ReadLine(), out int serviceIndex) && serviceIndex > 0 && serviceIndex <= availableServices.Count) 
+        if (int.TryParse(Console.ReadLine(), out int serviceIndex) && serviceIndex > 0 && serviceIndex <= availableServices.Count)
         {
             var selectedService = availableServices[serviceIndex - 1];
 
             // Check if the service is already booked for the car
-                if (bookingManager.IsServiceBookedForCar(carPlate, selectedService.Name)) 
+            if (bookingManager.IsServiceBookedForCar(carPlate, selectedService.Name))
             {
                 Console.WriteLine($"Bilen med registreringsnummer {carPlate} har redan bokat tjänsten '{selectedService.Name}'. Var vänlig och uppdatera tjänsten eller uppdatera den befintliga!");
                 Console.WriteLine("Vänligen välj en annan tjänst eller tid, eller uppdatera den befintliga bokningen.");
@@ -307,7 +306,7 @@ namespace DackanTireCenter.Admin
             string carPlate = Console.ReadLine()?.Trim().ToUpper();
 
             // Call UpdateExistBooking from the updateBooking instance
-            bookingManager.UpdateBooking(carPlate); 
+            bookingManager.UpdateBooking(carPlate);
         }
 
         private void ManageServices()

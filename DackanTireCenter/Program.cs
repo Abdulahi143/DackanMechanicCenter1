@@ -62,16 +62,16 @@ namespace DackanTireCenter
                     case 4:
                         Console.Write("Ange bilens registreringsnummer (t.ex. ABC123): ");
                         carPlate = Console.ReadLine()?.Trim().ToUpper();
-                        bookingManager.RemoveBookingByCar(carPlate); // Call RemoveBookingByCar in bookingManager
+                        bookingManager.RemoveBookingByCar(carPlate); 
                         break;
 
                     case 5:
                         AdminSignIn adminSignIn = new AdminSignIn();
-                        if (adminSignIn.SignIn())
+                        if (adminSignIn.SignIn() == true)
                         {
                             Console.WriteLine("Välkommen till admin panelen");
                             AdminPanel adminPanel = new AdminPanel(bookingManager);
-                            adminPanel.ShowMenu(); // Transition to the admin panel
+                            adminPanel.ShowMenu();
                         }
 
                         break;

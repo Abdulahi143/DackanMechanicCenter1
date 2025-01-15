@@ -18,7 +18,7 @@ namespace DackanTireCenter.Managers
         {
             bookedServices = new Dictionary<string, BookedService>();
             dailyBookingSlots = new Dictionary<DateOnly, Dictionary<TimeOnly, bool>>();
-            serviceManager = new ServiceManager(); // Moved before newBooking initialization
+            serviceManager = new ServiceManager();
             newBooking = new NewBooking(serviceManager, bookedServices, dailyBookingSlots); 
             updateBooking = new UpdateBooking(bookedServices, dailyBookingSlots);
             removeBooking = new RemoveBooking(bookedServices, dailyBookingSlots);
@@ -95,7 +95,7 @@ namespace DackanTireCenter.Managers
             }
             else
             {
-                // Check if the same service is already booked for the same car and time
+                // Kolla om tjänsten är redan är bokad för denna bil och säg tjänsten är redan bokad för bilen
                 if (bookedServices[carPlate].ServiceName.Equals(serviceName, StringComparison.OrdinalIgnoreCase) &&
                     bookedServices[carPlate].BookingTime == time)
                 {
@@ -104,7 +104,7 @@ namespace DackanTireCenter.Managers
                 }
                 else
                 {
-                    bookedServices[carPlate] = booking; // Overwrite the existing booking
+                    bookedServices[carPlate] = booking;
                 }
             }
 

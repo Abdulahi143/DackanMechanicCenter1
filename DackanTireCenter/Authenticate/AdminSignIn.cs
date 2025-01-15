@@ -19,7 +19,7 @@ namespace DackanTireCenter.Authenticate
             }
             else
             {
-                Console.WriteLine("Fel lösenord.");
+                Console.WriteLine("Fel lösenord eller användernamn.");
                 return false;
             }
         }

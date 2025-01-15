@@ -62,21 +62,26 @@ namespace DackanTireCenter.Managers
         {
             Console.WriteLine($"Tillgängliga tider för {date:yyyy-MM-dd}:");
             var slots = GetDailySlots(date);
-            int index = 1;
             DateTime now = DateTime.Now;
             bool hasAvailableSlots = false;
+            TimeOnly firstAvailableTime = default;
 
             foreach (var slot in slots)
             {
                 if (date == DateOnly.FromDateTime(now) && slot.Key <= TimeOnly.FromDateTime(now))
                     continue;
 
-                string status = slot.Value ? "Fullbokad" : "Ledig";
-                Console.WriteLine($"{index}. {slot.Key:HH\\:mm} - {status}");
-
-                if (status == "Ledig")
+                if (!slot.Value) // Om tiden inte är bokad
+                {
                     hasAvailableSlots = true;
-                index++;
+                    if (firstAvailableTime == default) // Om detta är den första tillgängliga tiden
+                    {
+                        firstAvailableTime = slot.Key; // Sätt den första tillgängliga tiden
+                    }
+                }
+
+                string status = slot.Value ? "Fullbokad" : "Ledig";
+                Console.WriteLine($"{slot.Key:HH\\:mm} - {status}");
             }
 
             if (!hasAvailableSlots)
@@ -86,26 +91,13 @@ namespace DackanTireCenter.Managers
                 return;
             }
 
-            Console.Write("\nVälj en ledig tid genom att ange dess nummer: ");
-            if (int.TryParse(Console.ReadLine(), out int slotChoice) && slotChoice > 0 && slotChoice <= slots.Count)
-            {
-                TimeOnly selectedTime = new List<TimeOnly>(slots.Keys)[slotChoice - 1];
-                if (slots[selectedTime])
-                {
-                    Console.WriteLine("Tiden är redan fullbokad. V älj en annan tid.");
-                }
-                else
-                {
-                    Console.WriteLine($"Du har valt tiden: {selectedTime:HH\\:mm}. Fyll i dina uppgifter för att boka klart.");
-                    HandleNewBooking(selectedTime, date);
-                }
-            }
-            else
-            {
-                Console.WriteLine("Ogiltigt val. Försök igen.");
-            }
-        }
+            // Välj automatiskt den första tillgängliga tiden
+            Console.WriteLine($"\nFörsta tillgängliga tid: {firstAvailableTime:HH\\:mm}");
+            Console.WriteLine("Bokar automatiskt denna tid...");
 
+            // Fortsätt med bokningen med den första tillgängliga tiden
+            HandleNewBooking(firstAvailableTime, date);
+        }
         public void HandleNewBooking(TimeOnly time, DateOnly date)
         {
             // Get the available services from the BookingManager
